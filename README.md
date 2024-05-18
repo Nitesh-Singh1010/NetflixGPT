@@ -15,4 +15,5 @@
   -used google firebase for authentication
   -using firebase documentation, created sign up user account and implemented sign in user api.
   -created redux store with userSlice.  as user sign in or sign up, all the data is added to the redux store.
+  -implemented signout feature
    

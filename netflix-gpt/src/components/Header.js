@@ -1,11 +1,43 @@
-import React from 'react'
-
+import React from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Header = () => {
+  const navigate = useNavigate();
+  const user=useSelector((store)=>store.user)
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        navigate("/");
+      })
+      .catch((error) => {
+        // An error happened.
+        navigate("/error");
+      });
+  };
   return (
-    <div className='absolute px-8 py-2 bg-gradient-to-b from-black z-10'>
-      <img src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png" alt="logo" className='w-60'/>
+    <div className="absolute px-8 py-2 w-screen bg-gradient-to-b from-black z-10 flex justify-between">
+      <img
+        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
+        alt="logo"
+        className="w-60"
+      />
+      {user && (
+        <div className="flex p-2">
+          <img
+            src="https://occ-0-3213-3647.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTvTV1d97HoOuutIG9GUEJgNIhg89JU3EQmtIikzdqolTLHSDqxwytfl61TC-HlrVt7QrzxdB5xR3nD2CPKNL9TF3qKTmcI.png?r=cad"
+            alt="userIcon"
+            className="w-12 h-12"
+          />
+          <button className="font-bold" onClick={handleSignOut}>
+            Sign Out
+          </button>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
