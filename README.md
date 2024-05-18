@@ -16,4 +16,5 @@
   -using firebase documentation, created sign up user account and implemented sign in user api.
   -created redux store with userSlice.  as user sign in or sign up, all the data is added to the redux store.
   -implemented signout feature
+  -ensured the user cannot go to browse page if not logged in and stayed on browse page if logged in by using useNavigate and tracking the auth state using onAuthStateChanged api from firebase documentation. It was used in useEffect of Header component because header component was present throught out the application and continuously tracked the auth state.
    
