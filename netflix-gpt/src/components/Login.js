@@ -8,6 +8,8 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setSignInForm] = useState(true);
@@ -15,7 +17,7 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const navigate = useNavigate();
-
+  const dispatch=useDispatch()
   const toggleSignInForm = () => {
     setSignInForm(!isSignInForm);
   };
@@ -56,10 +58,19 @@ const Login = () => {
           // Signed up
           const user = userCredential.user;
           updateProfile(user, {
-            photoURL: "https://example.com/jane-q-user/profile.jpg",
+            displayName: "Nitesh",
+            photoURL: "https://avatars.githubusercontent.com/u/98764154?v=4",
           })
             .then(() => {
               // Profile updated!
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL:photoURL
+                }))
               navigate("/browse");
             })
             .catch((error) => {
@@ -68,6 +79,7 @@ const Login = () => {
             });
 
           console.log(user);
+        
 
           // ...
         })

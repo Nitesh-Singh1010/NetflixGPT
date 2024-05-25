@@ -27,7 +27,7 @@ const Header = () => {
       {user && (
         <div className="flex p-2">
           <img
-            src="https://occ-0-3213-3647.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTvTV1d97HoOuutIG9GUEJgNIhg89JU3EQmtIikzdqolTLHSDqxwytfl61TC-HlrVt7QrzxdB5xR3nD2CPKNL9TF3qKTmcI.png?r=cad"
+            src={user.photoURL}
             alt="userIcon"
             className="w-12 h-12"
           />
