@@ -3,4 +3,7 @@ if the user sign up or if the user sign in, we'll get this user object and that 
 i added all the user data to our redux store.
 now instead of dispatching action on login/sign up and logout on the store, we'll use a utility api give to us by firebase on onAuthStateChanged which is 
 called whenever there is an authentication state chnage
+
+gpt search feature is implemented because maybe sometimes user don't know what movies toe watch. So i used gpt as a movie reccomendation system
+
 */
